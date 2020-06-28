@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Letters {
+public class Translator {
     public static void main(String[] args) {
 
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
