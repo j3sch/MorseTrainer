@@ -1,7 +1,7 @@
-import java.util.Scanner;
+
 
 public class Translator {
-    public static void main(String[] args) {
+    public static String main(word[]) {
 
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
                             "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1",
@@ -13,8 +13,7 @@ public class Translator {
                           ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..",
                           "----."};
 
-        Scanner sc = new Scanner(System.in);
-        String  input = sc.nextLine().toLowerCase();
+
         int len = input.length();
         String result = "";
         boolean morsecode = false;
@@ -32,7 +31,7 @@ public class Translator {
             }
             if (morsecode && morseAndLettes) {
                 System.out.println("Error, only morse or only letters and numbers!");
-                break;
+
             }
             if (!morsecode) {                                                                         //Word -> Morsecode
                 for (int j = 0; j < letters.length; j++) {
