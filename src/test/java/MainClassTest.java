@@ -1,5 +1,3 @@
-package org.example;
-
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -7,7 +5,7 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class MainClassTest
 {
     /**
      * Rigorous Test :-)
@@ -17,4 +15,8 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    // Max Tests
+    // todo: write tests for your stuff
+    // End of Max Test
 }
