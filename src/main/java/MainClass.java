@@ -4,6 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+
 public class MainClass extends Application {
     @Override
     public void start(Stage stage) {
@@ -15,7 +17,8 @@ public class MainClass extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LineUnavailableException {
+        Translator.translateToSound(".... .- .-.. .-.. ---", true);
         launch();
     }
 
