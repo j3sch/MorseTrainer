@@ -1,5 +1,4 @@
 import java.util.Scanner;
-package Translator;
 
 public class Input {
     public static String main() {
@@ -19,8 +18,8 @@ public class Input {
             if (input.substring(i, i + 1).equals(".") || input.substring(i, i + 1).equals("-")) {           //Checkt, ob input Morsecode ist
                 morsecode = true;
             } else {
-                for (int j = 0; j < Translator.letters.length; j++) {
-                    if (input.substring(i, i + 1).equals(Translator.letters[j])) {                          //Checkt, ob input Letters oder Numbers sind
+                for (int j = 0; j < lettersAndMorse.letters.length; j++) {
+                    if (input.substring(i, i + 1).equals(lettersAndMorse.letters[j])) {                          //Checkt, ob input Letters oder Numbers sind
                         morseAndLettes = true;
                         break;
                     } else {
