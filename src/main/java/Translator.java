@@ -1,7 +1,7 @@
 
 
 public class Translator {
-    public static String main(word[]) {
+    public static String main(word) {
 
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
                             "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1",
