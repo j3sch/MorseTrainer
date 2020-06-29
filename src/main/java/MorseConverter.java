@@ -130,8 +130,8 @@ public class MorseConverter {
 
         String[] s1 = morse.split(" ");
 
-        for (int i = 0; i < s1.length; i++) {
-            result.append(morseDecode(s1[i]));
+        for (String s : s1) {
+            result.append(morseDecode(s));
         }
         return result;
     }
