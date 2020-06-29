@@ -36,7 +36,7 @@ public class MorseQuiz {
     public static boolean askForWord() throws IOException {
         String word = readRandomLine();
 
-        StringBuilder wordInMorse = Translator.translateToMorse(word);
+        StringBuilder wordInMorse = MorseConverter.translateToMorse(word);
 
         String[] possibleAnswers = {word, readRandomLine(), readRandomLine(), readRandomLine()};
 
