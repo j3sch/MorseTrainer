@@ -4,7 +4,7 @@ public class Input {
     public static String main() {
 
         Scanner sc = new Scanner(System.in);
-        String  input = sc.nextLine().toLowerCase();
+        String input = sc.nextLine().toLowerCase();
 
         boolean morsecode = false;
         boolean morseAndLettes = false;
@@ -18,8 +18,8 @@ public class Input {
             if (input.substring(i, i + 1).equals(".") || input.substring(i, i + 1).equals("-")) {           //Checkt, ob input Morsecode ist
                 morsecode = true;
             } else {
-                for (int j = 0; j < lettersAndMorse.letters.length; j++) {
-                    if (input.substring(i, i + 1).equals(lettersAndMorse.letters[j])) {                          //Checkt, ob input Letters oder Numbers sind
+                for (int j = 0; j < LettersAndMorse.letters.length; j++) {
+                    if (input.substring(i, i + 1).equals(LettersAndMorse.letters[j])) {                          //Checkt, ob input Letters oder Numbers sind
                         morseAndLettes = true;
                         break;
                     } else {

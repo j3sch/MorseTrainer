@@ -5,9 +5,9 @@ public class Translator {
         String result = "";
 
         for (int i = 0; i < len; i++) {
-            for (int j = 0; j < lettersAndMorse.letters.length; j++) {
-                if (word.substring(i, i+1).equals(lettersAndMorse.letters[j])) {
-                    result += lettersAndMorse.morse[j];
+            for (int j = 0; j < LettersAndMorse.letters.length; j++) {
+                if (word.substring(i, i + 1).equals(LettersAndMorse.letters[j])) {
+                    result += LettersAndMorse.morse[j];
                     break;
                 }
             }
