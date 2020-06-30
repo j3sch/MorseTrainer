@@ -31,7 +31,7 @@ public class MainClass extends Application {
             @Override
             public void handle(ActionEvent event) {
                 main_UI_grid.getChildren().clear();
-                game_screen(0);
+                game_screen(0, stage);
             }
         });
         L2M_Button.setOnAction(new EventHandler<ActionEvent>(){
@@ -39,7 +39,7 @@ public class MainClass extends Application {
             @Override
             public void handle(ActionEvent event) {
                 main_UI_grid.getChildren().clear();
-                game_screen(1);
+                game_screen(1, stage);
             }
         });
         stage.setTitle("Morsetrainer");
@@ -53,13 +53,16 @@ public class MainClass extends Application {
         launch();
     }
 
-    public void game_screen(Integer game_mode){
+    public void game_screen(Integer game_mode, Stage stage){
         final String[] data = {"test","_..-.-."};
         final String usr_txt_inpt;
         //get data from backend logic
         System.out.println(game_mode);
         Label given_value = new Label(data[0]);
         main_UI_grid.getChildren().add(given_value);
+        Button return_to_MM_button = new Button("Main Menu");
+        return_to_MM_button.setOnAction(e->{return_to_Main_Menu(stage);});
+        main_UI_grid.getChildren().add(return_to_MM_button);
         if (game_mode==0){
             final HBox user_input = new HBox();
             final TextField alpha_input = new TextField();
@@ -71,12 +74,10 @@ public class MainClass extends Application {
                 public void handle(ActionEvent event) {
                     String alpha_from_user = alpha_input.getCharacters().toString();
                     if (alpha_from_user==data[1]){
-                        main_UI_grid.getChildren().clear();
-                        launch();
+                        return_to_Main_Menu(stage);
                     }
                     else{
                         popup_wrong_answer();
-                        //game_fail(data,alpha_from_user);
                     }
                 }
             });
@@ -92,10 +93,10 @@ public class MainClass extends Application {
             Button long_morse = new Button();
             long_morse.setText("_");
             long_morse.setOnAction(value -> { alter_label("_",display_user_input); });
-            Button exit = new Button();
-            exit.setText("cancel");
+            Button done_button = new Button();
+            done_button.setText("cone");
             main_UI_grid.getChildren().add(display_user_input);
-            user_input.getChildren().addAll(short_morse,long_morse,exit);
+            user_input.getChildren().addAll(short_morse,long_morse,done_button);
             main_UI_grid.getChildren().add(user_input);
         }
     }
@@ -116,8 +117,9 @@ public class MainClass extends Application {
     }
 
 
-    public return_to_Main_Menu(){
-        
+    public void return_to_Main_Menu(Stage stage){
+        main_UI_grid.getChildren().clear();
+        start(stage);
     }
 
     public void alter_label(String character,Label x){
