@@ -1,5 +1,5 @@
 public class Translator {
-    public static String abcToMorse(word) {
+    public static String abcToMorse(String word) {
 
         int len = word.length();
         String result = "";
