@@ -108,7 +108,7 @@ public class MorseConverter {
      * @param word the word(s) to be translated
      * @return morse code for requested words
      */
-    public static StringBuilder translateToMorse(String word) {
+    public static String translateToMorse(String word) {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < word.length(); i++) {
@@ -116,16 +116,16 @@ public class MorseConverter {
             result.append(" ");
         }
 
-        return result;
+        return result.toString().trim();
     }
-
 
     /**
      * translates morse to words
+     *
      * @param morse
      * @return word(s)
      */
-    public static StringBuilder translateToWord(String morse){
+    public static String translateToWord(String morse) {
         StringBuilder result = new StringBuilder();
 
         String[] s1 = morse.split(" ");
@@ -133,7 +133,7 @@ public class MorseConverter {
         for (String s : s1) {
             result.append(morseDecode(s));
         }
-        return result;
+        return result.toString();
     }
 
 }

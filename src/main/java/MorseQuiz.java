@@ -7,7 +7,6 @@ public class MorseQuiz {
 
     /**
      * reads a random line in final_list_txt.
-     *
      * @return one random word
      * @throws IOException if final_list.txt could not be found
      */
@@ -29,29 +28,57 @@ public class MorseQuiz {
 
     /**
      * A morse quiz which provides a word in morse and four possible Answers.
-     *
      * @return return true if user answered correctly
      * @throws IOException if final_list.txt could not be found
      */
     public static boolean askForWord() throws IOException {
-        String word = readRandomLine();
+        String correctAnswer = readRandomLine();
 
-        StringBuilder wordInMorse = MorseConverter.translateToMorse(word);
+        String wordInMorse = MorseConverter.translateToMorse(correctAnswer); // show to player
 
-        String[] possibleAnswers = {word, readRandomLine(), readRandomLine(), readRandomLine()};
+        String[] possibleAnswers = {correctAnswer, readRandomLine(), readRandomLine(), readRandomLine()};
 
         Collections.shuffle(Arrays.asList(possibleAnswers));
 
-        String a = possibleAnswers[0];
-        String b = possibleAnswers[1];
-        String c = possibleAnswers[2];
-        String d = possibleAnswers[3];
+        String a = possibleAnswers[0]; //show to player
+        String b = possibleAnswers[1]; //show to player
+        String c = possibleAnswers[2]; //show to player
+        String d = possibleAnswers[3]; //show to player
 
         try (final Scanner scan = new Scanner(System.in)) {
 
-            String userInput = scan.next().toLowerCase();
-            String wordLow = word.toLowerCase();
-            return userInput.equals(wordLow);
+            String userInput = scan.next();
+            return userInput.equalsIgnoreCase(correctAnswer);
+        }
+    }
+
+    /**
+     * A morse quiz which provides morse and four possible Answers.
+     * @return return true if user answered correctly
+     * @throws IOException if final_list.txt could not be found
+     */
+    public static boolean askForMorse() throws IOException {
+
+        String word = readRandomLine(); //show to player
+
+        String correctAnswer = MorseConverter.translateToMorse(word);
+        String wrongAnswer1 = MorseConverter.translateToMorse(readRandomLine());
+        String wrongAnswer2 = MorseConverter.translateToMorse(readRandomLine());
+        String wrongAnswer3 = MorseConverter.translateToMorse(readRandomLine());
+
+        String[] possibleAnswers = {correctAnswer, wrongAnswer1,
+                wrongAnswer2, wrongAnswer3};
+
+        Collections.shuffle(Arrays.asList(possibleAnswers));
+
+        String a = possibleAnswers[0]; //show to player
+        String b = possibleAnswers[1]; //show to player
+        String c = possibleAnswers[2]; //show to player
+        String d = possibleAnswers[3]; //show to player
+
+        try (final Scanner scan = new Scanner(System.in)) {
+            String userInput = scan.nextLine();
+            return userInput.equals(correctAnswer);
         }
     }
 }
