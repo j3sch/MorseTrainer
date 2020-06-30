@@ -1,4 +1,3 @@
-import com.sun.javafx.scene.control.WebColorField;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,8 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 
 
 public class MainClass extends Application {
@@ -49,7 +47,7 @@ public class MainClass extends Application {
     }
 
     public void game_screen(Integer game_mode, Stage stage){
-        final String[] data = {"test","_..-.-."};
+        final String[] data = {"THIS IS A HUGE PLACEHOLDER!!!!!!","_..-.-."};
         final String usr_txt_inpt;
         //get data from backend logic
         System.out.println(game_mode);
@@ -70,7 +68,7 @@ public class MainClass extends Application {
             user_done.setOnAction(e->{
                     String alpha_from_user = alpha_input.getCharacters().toString();
                     if (alpha_from_user==data[1]){
-                        return_to_Main_Menu(stage);
+                        game_screen(game_mode,stage);
                     }else{
                         popup_wrong_answer();
                     }
@@ -92,7 +90,7 @@ public class MainClass extends Application {
             done_button.setText("done");
             done_button.setOnAction(e-> {
                 if(display_user_input.getText()==data[0]){
-                    return_to_Main_Menu(stage);
+                    game_screen(game_mode,stage);
                 } else {
                     display_user_input.setText("");
                     popup_wrong_answer();
