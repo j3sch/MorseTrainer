@@ -1,16 +1,15 @@
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 
 
 public class MainClass extends Application {
@@ -50,6 +49,7 @@ public class MainClass extends Application {
     }
 
     public static void main(String[] args) {
+
         launch();
     }
 
@@ -75,7 +75,7 @@ public class MainClass extends Application {
                         launch();
                     }
                     else{
-                        System.out.println("Nope");
+                        popup_wrong_answer();
                         //game_fail(data,alpha_from_user);
                     }
                 }
@@ -88,17 +88,39 @@ public class MainClass extends Application {
             final Label display_user_input = new Label();
             Button short_morse = new Button();
             short_morse.setText(".");
-            // what?!
-            short_morse.setOnAction(value -> { });
+            short_morse.setOnAction(value -> { alter_label(".",display_user_input); });
             Button long_morse = new Button();
             long_morse.setText("_");
+            long_morse.setOnAction(value -> { alter_label("_",display_user_input); });
             Button exit = new Button();
             exit.setText("cancel");
+            main_UI_grid.getChildren().add(display_user_input);
             user_input.getChildren().addAll(short_morse,long_morse,exit);
             main_UI_grid.getChildren().add(user_input);
         }
     }
-    public void alter_label(String character;Label x){
+
+    public void popup_wrong_answer(){
+        Stage popupwindow = new Stage();
+        popupwindow.setTitle("Wrong Answer");
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        Label fail_text = new Label("Your answer was wrong...please try again");
+        Button exit_button = new Button("Okay");
+        exit_button.setOnAction(e->popupwindow.close());
+        VBox popup_layout = new VBox(10);
+        popup_layout.getChildren().addAll(fail_text,exit_button);
+        popup_layout.setAlignment(Pos.CENTER);
+        Scene popup_scene = new Scene(popup_layout,250,100);
+        popupwindow.setScene(popup_scene);
+        popupwindow.showAndWait();
+    }
+
+
+    public return_to_Main_Menu(){
+        
+    }
+
+    public void alter_label(String character,Label x){
         x.setText(x.getText()+character);
     }
 }
