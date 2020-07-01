@@ -45,7 +45,7 @@ public class Translator {
      * check the input string for alphabet or morse.
      * If alphabet was found translate the string to morse. pass dot or stroke by character to sound function
      */
-    public static void translateToSound(String input) throws LineUnavailableException {
+    public static void morseToSound(String input) throws LineUnavailableException {
         if (!input.matches("^[\\. -]+$")) { // check if morse code is not found
             // todo: convert String to morse code
         }

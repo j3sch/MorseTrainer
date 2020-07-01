@@ -18,8 +18,8 @@ public class MainClass extends Application {
     }
 
     public static void main(String[] args) throws LineUnavailableException {
-        Translator.translateToSound(".... .- .-.. .-.. ---");
-        Translator.translateToSound("abc");
+        Translator.morseToSound(".... .- .-.. .-.. ---");
+        Translator.morseToSound("abc");
         launch();
     }
 
