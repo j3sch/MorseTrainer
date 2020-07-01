@@ -47,12 +47,12 @@ public class MainClass extends Application {
     }
 
     public void game_screen(Integer game_mode, Stage stage){
-        final String[] data = {"THIS IS A HUGE PLACEHOLDER!!!!!!","_..-.-."};
+        final String[] data = {"THIS IS A HUGE PLACEHOLDER!!!!!!","... .... ..- -- -... ..- .-.."};
         final String usr_txt_inpt;
         //get data from backend logic
         System.out.println(game_mode);
-        HBox tmp = new HBox();
-        Label given_value = new Label(data[0]);
+        final HBox tmp = new HBox();
+        final Label given_value = new Label(data[0]);
         main_UI_grid.getChildren().add(given_value);
         Button return_to_MM_button = new Button("Main Menu");
         return_to_MM_button.setOnAction(e->{return_to_Main_Menu(stage);});
@@ -63,11 +63,11 @@ public class MainClass extends Application {
         if (game_mode==0){
             final HBox user_input = new HBox();
             final TextField alpha_input = new TextField();
-            Button user_done = new Button();
+            final Button user_done = new Button();
             user_done.setText("Done");
             user_done.setOnAction(e->{
                     String alpha_from_user = alpha_input.getCharacters().toString();
-                    if (alpha_from_user==data[1]){
+                    if (alpha_from_user.equals(data[1])){
                         game_screen(game_mode,stage);
                     }else{
                         popup_wrong_answer();
@@ -80,16 +80,16 @@ public class MainClass extends Application {
             HBox user_input = new HBox();
             final Label display_user_input = new Label();
             display_user_input.setTextFill(Color.web("#0099ff"));
-            Button short_morse = new Button();
+            final Button short_morse = new Button();
             short_morse.setText(".");
             short_morse.setOnAction(value -> { alter_label(".",display_user_input); });
             Button long_morse = new Button();
-            long_morse.setText("_");
-            long_morse.setOnAction(value -> { alter_label("_",display_user_input); });
+            long_morse.setText("-");
+            long_morse.setOnAction(value -> { alter_label("-",display_user_input); });
             Button done_button = new Button();
             done_button.setText("done");
             done_button.setOnAction(e-> {
-                if(display_user_input.getText()==data[0]){
+                if(display_user_input.getText().equals(data[0])){
                     game_screen(game_mode,stage);
                 } else {
                     display_user_input.setText("");
