@@ -21,6 +21,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.loadui</groupId>
+      <artifactId>testFx</artifactId>
+      <version>3.0.0 </version>
+    </dependency>
+    <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>14</version>
