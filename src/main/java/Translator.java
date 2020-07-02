@@ -9,6 +9,7 @@ public class Translator {
 
         int len = word.length();
         StringBuilder result = new StringBuilder();
+        char[] wordArray = word. toCharArray();
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < LettersAndMorse.letters.length; j++) {
