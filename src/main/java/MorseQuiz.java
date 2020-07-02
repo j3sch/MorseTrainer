@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MorseQuiz {
 
@@ -11,7 +12,7 @@ public class MorseQuiz {
      * @return one random word
      * @throws IOException if final_list.txt could not be found
      */
-    public static String readRandomLine() throws IOException {
+    public static String getRandomLine() throws IOException {
         FileReader file = new FileReader("./data/final_list.txt");
         BufferedReader br = new BufferedReader(file);
         ArrayList<String> array = new ArrayList<>();
@@ -34,12 +35,12 @@ public class MorseQuiz {
      * @throws IOException if final_list.txt could not be found
      */
     public static String[] askForWord() throws IOException {
-        String correctAnswer = readRandomLine();
+        String correctAnswer = getRandomLine();
 
         String wordInMorse = Translator.abcToMorse(correctAnswer);
 
         return new String[]{wordInMorse, correctAnswer,
-                readRandomLine(), readRandomLine(), readRandomLine()};
+                getRandomLine(), getRandomLine(), getRandomLine()};
 
        /* Collections.shuffle(Arrays.asList(possibleAnswers));
 
@@ -63,12 +64,12 @@ public class MorseQuiz {
      */
     public static String[] askForMorse() throws IOException {
 
-        String word = readRandomLine();
+        String word = getRandomLine();
 
         String correctAnswer = Translator.abcToMorse(word);
-        String wrongAnswer1 = Translator.abcToMorse(readRandomLine());
-        String wrongAnswer2 = Translator.abcToMorse(readRandomLine());
-        String wrongAnswer3 = Translator.abcToMorse(readRandomLine());
+        String wrongAnswer1 = Translator.abcToMorse(getRandomLine());
+        String wrongAnswer2 = Translator.abcToMorse(getRandomLine());
+        String wrongAnswer3 = Translator.abcToMorse(getRandomLine());
 
         return new String[]{word, correctAnswer,
                 wrongAnswer1, wrongAnswer2, wrongAnswer3};
