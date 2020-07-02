@@ -38,9 +38,8 @@ public class MorseQuiz {
 
         String wordInMorse = Translator.abcToMorse(correctAnswer);
 
-        String[] s1 = {wordInMorse, correctAnswer, readRandomLine(), readRandomLine(), readRandomLine()};
-
-        return s1;
+        return new String[]{wordInMorse, correctAnswer,
+                readRandomLine(), readRandomLine(), readRandomLine()};
 
        /* Collections.shuffle(Arrays.asList(possibleAnswers));
 
@@ -71,9 +70,8 @@ public class MorseQuiz {
         String wrongAnswer2 = Translator.abcToMorse(readRandomLine());
         String wrongAnswer3 = Translator.abcToMorse(readRandomLine());
 
-        String[] s2 = {word, correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3};
-
-        return s2;
+        return new String[]{word, correctAnswer,
+                wrongAnswer1, wrongAnswer2, wrongAnswer3};
 
        /* Collections.shuffle(Arrays.asList(possibleAnswers));
 
