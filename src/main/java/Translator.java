@@ -1,25 +1,34 @@
-import javax.sound.sampled.AudioFormat;
+iimport javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.Scanner;
 
 public class Translator {
-    public static String abcToMorse(String word) {
+    public static void main(String[] args) {
 
-        int len = word.length();
-        StringBuilder result = new StringBuilder();
-        char[] wordArray = word. toCharArray();
+        String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1",
+                "2", "3", "4", "5", "6", "7", "8", "9"};
+
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+                ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
+                "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----",
+                "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
+        
+        int len = input.length();
+        String result = "";
+        char[] wordArray = word.toCharArray();
 
         for (int i = 0; i < len; i++) {
-            for (int j = 0; j < LettersAndMorse.letters.length; j++) {
-                if (word.substring(i, i + 1).equals(LettersAndMorse.letters[j])) {
-                    result.append(LettersAndMorse.morse[j]);
+            for (int j = 0; j < letters.length; j++) {
+                if (wordArray[i].equals(letters[j])) {
+                    result += morse[j];
                     break;
                 }
             }
         }
-        return result.toString();
+        System.out.println(result);
     }
 
     /**
@@ -61,11 +70,11 @@ public class Translator {
         byte[] buf = new byte[1];
 
         AudioFormat af = new AudioFormat(
-                        sampleRate,         // sampling rate per sec
-                        8,     // memory size for one sample value
-                        1,          // mono
-                        true,        // 8bit with sign (+/-)
-                        false);
+                sampleRate,         // sampling rate per sec
+                8,     // memory size for one sample value
+                1,          // mono
+                true,        // 8bit with sign (+/-)
+                false);
         SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
 
         if (c == '-') {
@@ -89,4 +98,5 @@ public class Translator {
         sdl.stop();
         sdl.close();
     }
+
 }
