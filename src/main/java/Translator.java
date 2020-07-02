@@ -1,11 +1,10 @@
-iimport javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-import java.util.Scanner;
 
 public class Translator {
-    public static void main(String[] args) {
+    public static String abcToMorse(String word) {
 
         String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
                 "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1",
@@ -16,19 +15,19 @@ public class Translator {
                 "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----",
                 "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
         
-        int len = input.length();
-        String result = "";
+        int len = word.length();
+        StringBuilder result = new StringBuilder();
         char[] wordArray = word.toCharArray();
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < letters.length; j++) {
                 if (wordArray[i].equals(letters[j])) {
-                    result += morse[j];
+                    result.append(morse[j]);
                     break;
                 }
             }
         }
-        System.out.println(result);
+        return result.toString();
     }
 
     /**
