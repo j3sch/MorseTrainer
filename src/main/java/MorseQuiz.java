@@ -13,6 +13,7 @@ public class MorseQuiz {
      * @throws IOException if final_list.txt could not be found
      */
     public static String getRandomLine() throws IOException {
+
         FileReader file = new FileReader("./data/final_list.txt");
         BufferedReader br = new BufferedReader(file);
         ArrayList<String> array = new ArrayList<>();
@@ -35,25 +36,13 @@ public class MorseQuiz {
      * @throws IOException if final_list.txt could not be found
      */
     public static String[] askForWord() throws IOException {
+
         String correctAnswer = getRandomLine();
 
         String wordInMorse = Translator.abcToMorse(correctAnswer);
 
         return new String[]{wordInMorse, correctAnswer,
                 getRandomLine(), getRandomLine(), getRandomLine()};
-
-       /* Collections.shuffle(Arrays.asList(possibleAnswers));
-
-        String a = possibleAnswers[0];
-        String b = possibleAnswers[1];
-        String c = possibleAnswers[2];
-        String d = possibleAnswers[3];
-
-        try (final Scanner scan = new Scanner(System.in)) {
-
-            String userInput = scan.next();
-            return userInput.equalsIgnoreCase(correctAnswer);
-        }*/
     }
 
     /**
@@ -73,17 +62,5 @@ public class MorseQuiz {
 
         return new String[]{word, correctAnswer,
                 wrongAnswer1, wrongAnswer2, wrongAnswer3};
-
-       /* Collections.shuffle(Arrays.asList(possibleAnswers));
-
-        String a = possibleAnswers[0];
-        String b = possibleAnswers[1];
-        String c = possibleAnswers[2];
-        String d = possibleAnswers[3];
-
-        try (final Scanner scan = new Scanner(System.in)) {
-            String userInput = scan.nextLine();
-            return userInput.equals(correctAnswer);
-        }*/
     }
 }
