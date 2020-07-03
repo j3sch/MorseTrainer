@@ -6,40 +6,50 @@ public class InputTranslator {
     String input = sc.nextLine().toLowerCase();
     int len = input.length();
 
-    public String lettersAndNumbers(String input) {
+    static char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+            'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1',
+            '2', '3', '4', '5', '6', '7', '8', '9'};
+
+    static String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+            ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
+            "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----",
+            "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
+
+    public void lettersAndNumbers(String input) {
 
         char[] inputArray = input.toCharArray();
         boolean inputValid = true;
 
         for (int i = 0; i < len; i++) {
-            for (int j = 0; j < Translator.letters.length; j++) {
-                if (inputArray[j] == Translator.letters[j]) {
+            for (int j = 0; j < letters.length; j++) {
+                if (inputArray[j] == letters[j]) {
                     break;
                 }
-                if (j == Translator.letters.length -1) {
+                if (j == letters.length -1) {
                     inputValid = false;
                 }
             }
         }
         if (inputValid) {
-            return Translator.abcToMorse(input);
+            System.out.println(Translator.abcToMorse(input));
         } else {
-            return "Error, input not valid!";
+            System.out.println("Error, input not valid!");
         }
     }
 
-    public String Morsecode(String input) {
+    public void Morsecode(String input) {
 
         String[] inputSplit = input.split(" ");
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < inputSplit.length; i++) {
-            for (int j = 0; j < Translator.morse.length; j++) {
-                if (inputSplit[0].equals(Translator.morse[j])) {
-                    result.append(Translator.letters[j]);
+            for (int j = 0; j < morse.length; j++) {
+                if (inputSplit[i].equals(morse[j])) {
+                    result.append(letters[j]);
+                    break;
                 }
             }
         }
-        return result.toString();
+        System.out.println(result.toString());
     }
 }
