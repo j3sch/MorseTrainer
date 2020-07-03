@@ -17,15 +17,11 @@ public class InputTranslator {
                     break;
                 }
                 if (j == Translator.letters.length -1) {
-                    inputValid = false;
+                    return "Error, input not valid!";
                 }
             }
         }
-        if (inputValid) {
-            return Translator.abcToMorse(input);
-        } else {
-            return "Error, input not valid!";
-        }
+        return Translator.abcToMorse(input);
     }
 
     public String Morsecode(String input) {
@@ -38,6 +34,9 @@ public class InputTranslator {
                 if (inputSplit[i].equals(Translator.morse[j])) {
                     result.append(Translator.letters[j]);
                     break;
+                }
+                if (j == Translator.morse.length -1) {
+                    return "Error, input not valid!";
                 }
             }
         }
