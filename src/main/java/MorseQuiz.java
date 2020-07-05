@@ -1,32 +1,37 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class MorseQuiz {
 
     /**
-     * reads a random line in final_list_txt.
+     * reads final_list.txt and provides a random word for the quiz.
+     * The text file should only have one word in each line,
+     * otherwise this method won't work as intended.
      *
      * @return one random word
      * @throws IOException if final_list.txt could not be found
      */
-    public static String getRandomLine() throws IOException {
+    public static String getRandomWord() throws IOException {
 
         FileReader file = new FileReader("./data/final_list.txt");
         BufferedReader br = new BufferedReader(file);
-        ArrayList<String> array = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         String line;
 
         while ((line = br.readLine()) != null) {
-            array.add(line);
+            list.add(line);
         }
+
+        //removes possible empty String
+        list.removeIf(word -> word == null || "".equals(word));
+
         Random rand = new Random();
 
-        int randomIndex = rand.nextInt(array.size());
+        int randomIndex = rand.nextInt(list.size());
 
-        return array.get(randomIndex);
+        return list.get(randomIndex);
     }
 
     /**
