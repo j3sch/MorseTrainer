@@ -34,20 +34,21 @@ public class MorseQuiz {
         return list.get(randomIndex);
     }
 
+
     /**
      * A morse quiz which provides a word in morse and four possible Answers.
      *
      * @return a String[] which contains a morse code, the answer, and three wrong answers
      * @throws IOException if final_list.txt could not be found
      */
-    public static String[] askForWord() throws IOException {
+    public static String[] getMorseToWordQuiz() throws IOException {
 
-        String correctAnswer = getRandomLine();
+        String correctAnswer = getRandomWord();
 
         String wordInMorse = Translator.abcToMorse(correctAnswer);
 
         return new String[]{wordInMorse, correctAnswer,
-                getRandomLine(), getRandomLine(), getRandomLine()};
+                getRandomWord(), getRandomWord(), getRandomWord()};
     }
 
     /**
@@ -56,14 +57,14 @@ public class MorseQuiz {
      * @return a String[] which contains a word, the answer, and three wrong answers
      * @throws IOException if final_list.txt could not be found
      */
-    public static String[] askForMorse() throws IOException {
+    public static String[] getWordToMorseQuiz() throws IOException {
 
-        String word = getRandomLine();
+        String word = getRandomWord();
 
         String correctAnswer = Translator.abcToMorse(word);
-        String wrongAnswer1 = Translator.abcToMorse(getRandomLine());
-        String wrongAnswer2 = Translator.abcToMorse(getRandomLine());
-        String wrongAnswer3 = Translator.abcToMorse(getRandomLine());
+        String wrongAnswer1 = Translator.abcToMorse(getRandomWord());
+        String wrongAnswer2 = Translator.abcToMorse(getRandomWord());
+        String wrongAnswer3 = Translator.abcToMorse(getRandomWord());
 
         return new String[]{word, correctAnswer,
                 wrongAnswer1, wrongAnswer2, wrongAnswer3};
