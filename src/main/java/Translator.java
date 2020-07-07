@@ -52,20 +52,23 @@ public class Translator {
     }
 
     /**
-     * Expects an char array of several words or sentences to be translated to sound
+     * Expects an String array of several words or sentences to be translated to sound
      *
      * @param input the word you want to convert to morse code sound
      * @throws LineUnavailableException
      */
-    public static void morseToSound(char[] input) throws LineUnavailableException {
-        for (char c : input) {
-            if (c == ' ') {
+    public static void morseToSound(String[] input) throws LineUnavailableException {
+        for (String c : input) {
+            if (c.equals(" ")) {
                 try {
                     Thread.sleep(800); // delay to split up chars
                 } catch (InterruptedException e) {
                 }
             } else {
-                generateSound(c);
+                char[] morseChar = c.toCharArray();
+                for (int i = 0; i < morseChar.length;i++) {
+                    generateSound(morseChar[i]);
+                }
             }
         }
     }
