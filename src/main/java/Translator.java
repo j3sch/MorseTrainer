@@ -38,12 +38,11 @@ public class Translator {
     }
 
     /**
+     * check the input string for alphabet or morse.
+     * If alphabet was found translate the string to morse. pass dot or stroke by character to sound function
      *
      * @param input String, the word you want to convert to morse code sound
      * @throws LineUnavailableException
-     *
-     * check the input string for alphabet or morse.
-     * If alphabet was found translate the string to morse. pass dot or stroke by character to sound function
      */
     public static void morseToSound(String input) throws LineUnavailableException {
         if (!input.matches("^[\\. -]+$")) { // check if morse code is not found
@@ -63,11 +62,10 @@ public class Translator {
     }
 
     /**
+     * use the transfer parameter to generate a tone that is either long or short
      *
      * @param c char, '.' or '-', will be converted to sound
      * @throws LineUnavailableException
-     *
-     * use the transfer parameter to generate a tone that is either long or short
      */
     public static void generateSound(char c) throws LineUnavailableException {
         int duration; // ms
