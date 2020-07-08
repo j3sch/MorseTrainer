@@ -34,7 +34,6 @@ public class MorseQuiz {
         return list.get(randomIndex);
     }
 
-
     /**
      * A morse quiz which provides a word in morse and four possible Answers.
      *
@@ -68,5 +67,20 @@ public class MorseQuiz {
 
         return new String[]{word, correctAnswer,
                 wrongAnswer1, wrongAnswer2, wrongAnswer3};
+    }
+
+    /**
+     * provides a default state
+     *
+     * @return a String[] which contains a random word and its translation
+     * @throws IOException if final_list.txt could not be found
+     */
+    public static String[] defaultGameWord() throws IOException {
+
+        String word = getRandomWord();
+        String wordInMorse = Translator.abcToMorse(word);
+
+        return new String[]{word, wordInMorse};
+
     }
 }
