@@ -9,7 +9,6 @@ public class InputTranslator {
     public String lettersAndNumbers(String input) {
 
         char[] inputArray = input.toCharArray();
-        boolean inputValid = true;
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < Translator.letters.length; j++) {
@@ -24,19 +23,23 @@ public class InputTranslator {
         return Translator.abcToMorse(input);
     }
 
-    public String Morsecode(String input) {
 
-        String[] inputSplit = input.split(" ");
+    public String Morsecode(String[] input) {
+
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < inputSplit.length; i++) {
-            for (int j = 0; j < Translator.morse.length; j++) {
-                if (inputSplit[i].equals(Translator.morse[j])) {
-                    result.append(Translator.letters[j]);
-                    break;
-                }
-                if (j == Translator.morse.length -1) {
-                    return "Error, input not valid!";
+        for (int i = 0; i < len; i++) {
+            if (input[i].equals(' ')) {
+                result.append(' ');
+            } else {
+                for (int j = 0; j < Translator.morse.length; j++) {
+                    if (input[i].equals(Translator.morse[j])) {
+                        result.append(Translator.letters[j]);
+                        break;
+                    }
+                    if (j == Translator.morse.length -1) {
+                        return "Error, input not valid!";
+                    }
                 }
             }
         }
