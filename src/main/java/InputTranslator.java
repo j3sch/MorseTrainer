@@ -1,35 +1,38 @@
-import java.util.Scanner;
 
 public class InputTranslator {
 
-    Scanner sc = new Scanner(System.in);
-    String input = sc.nextLine().toLowerCase();
-    int len = input.length();
-
     public String lettersAndNumbers(String input) {
 
-        char[] inputArray = input.toCharArray();
+        StringBuilder result = new StringBuilder();
+        int len = input.length();
+        char[] wordArray = input.toCharArray();
 
         for (int i = 0; i < len; i++) {
+            if (wordArray[i] == ' ') {
+                result.append(' ');
+            } else {
             for (int j = 0; j < Translator.letters.length; j++) {
-                if (inputArray[j] == Translator.letters[j]) {
+                if (wordArray[i] == Translator.letters[j]) {
+                    result.append(Translator.morse[j]);
                     break;
                 }
-                if (j == Translator.letters.length -1) {
+                if (j == Translator.letters.length - 1) {
                     return "Error, input not valid!";
                 }
             }
+            }
         }
-        return Translator.abcToMorse(input);
+        return result.toString();
     }
 
 
     public String Morsecode(String[] input) {
 
         StringBuilder result = new StringBuilder();
+        int len = input.length;
 
         for (int i = 0; i < len; i++) {
-            if (input[i].equals(' ')) {
+            if (input[i].equals(" ")) {
                 result.append(' ');
             } else {
                 for (int j = 0; j < Translator.morse.length; j++) {
