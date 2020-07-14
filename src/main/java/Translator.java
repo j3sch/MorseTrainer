@@ -38,36 +38,46 @@ public class Translator {
     }
 
     /**
+     * Expects single word as string to be translated to sound
+     * Pass dot or stroke by character to sound function
      *
-     * @param input String, the word you want to convert to morse code sound
+     * @param input the word you want to convert to morse code sound
      * @throws LineUnavailableException
-     *
-     * check the input string for alphabet or morse.
-     * If alphabet was found translate the string to morse. pass dot or stroke by character to sound function
      */
     public static void morseToSound(String input) throws LineUnavailableException {
-        if (!input.matches("^[\\. -]+$")) { // check if morse code is not found
-            // todo: convert String to morse code
-        }
-
         char[] code = input.toCharArray();
         for (char c : code) {
-            if (c == ' ') {
+            generateSound(c);
+        }
+    }
+
+    /**
+     * Expects an String array of several words or sentences to be translated to sound
+     *
+     * @param input the word you want to convert to morse code sound
+     * @throws LineUnavailableException
+     */
+    public static void morseToSound(String[] input) throws LineUnavailableException {
+        for (String c : input) {
+            if (c.equals(" ")) {
                 try {
                     Thread.sleep(800); // delay to split up chars
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                }
             } else {
-                generateSound(c);
+                char[] morseChar = c.toCharArray();
+                for (int i = 0; i < morseChar.length;i++) {
+                    generateSound(morseChar[i]);
+                }
             }
         }
     }
 
     /**
-     *
-     * @param c char, '.' or '-', will be converted to sound
-     * @throws LineUnavailableException
-     *
      * use the transfer parameter to generate a tone that is either long or short
+     *
+     * @param c '.' or '-', will be converted to sound
+     * @throws LineUnavailableException
      */
     public static void generateSound(char c) throws LineUnavailableException {
         int duration; // ms
@@ -76,11 +86,11 @@ public class Translator {
         byte[] buf = new byte[1];
 
         AudioFormat af = new AudioFormat(
-                        sampleRate,         // sampling rate per sec
-                        8,     // memory size for one sample value
-                        1,          // mono
-                        true,        // 8bit with sign (+/-)
-                        false);
+                sampleRate,         // sampling rate per sec
+                8,     // memory size for one sample value
+                1,          // mono
+                true,        // 8bit with sign (+/-)
+                false);
         SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
 
         if (c == '-') {
