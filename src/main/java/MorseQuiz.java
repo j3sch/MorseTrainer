@@ -31,6 +31,7 @@ public class MorseQuiz {
 
         int randomIndex = rand.nextInt(list.size());
 
+        file.close();
         return list.get(randomIndex);
     }
 
