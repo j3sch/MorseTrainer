@@ -15,8 +15,8 @@ public class MorseQuiz {
      */
     public static String getRandomWord() throws IOException {
 
-        FileReader file = new FileReader("./data/final_list.txt");
-        BufferedReader br = new BufferedReader(file);
+        final FileReader file = new FileReader("./data/final_list.txt");
+        final BufferedReader br = new BufferedReader(file);
         ArrayList<String> list = new ArrayList<>();
         String line;
 
@@ -27,12 +27,12 @@ public class MorseQuiz {
         //removes possible empty String
         list.removeIf(word -> word == null || "".equals(word));
 
-        Random rand = new Random();
+        final Random rand = new Random();
 
-        int randomIndex = rand.nextInt(list.size());
+        final int RANDOM_INDEX = rand.nextInt(list.size());
 
         file.close();
-        return list.get(randomIndex);
+        return list.get(RANDOM_INDEX);
     }
 
     /**
@@ -43,11 +43,11 @@ public class MorseQuiz {
      */
     public static String[] getMorseToWordQuiz() throws IOException {
 
-        String correctAnswer = getRandomWord();
+        final String CORRECT_ANSWER = getRandomWord();
 
-        String wordInMorse = Translator.abcToMorse(correctAnswer);
+        final String WORD_IN_MORSE = Translator.abcToMorse(CORRECT_ANSWER);
 
-        return new String[]{wordInMorse, correctAnswer,
+        return new String[]{WORD_IN_MORSE, CORRECT_ANSWER,
                 getRandomWord(), getRandomWord(), getRandomWord()};
     }
 
@@ -59,15 +59,15 @@ public class MorseQuiz {
      */
     public static String[] getWordToMorseQuiz() throws IOException {
 
-        String word = getRandomWord();
+        final String WORD = getRandomWord();
 
-        String correctAnswer = Translator.abcToMorse(word);
-        String wrongAnswer1 = Translator.abcToMorse(getRandomWord());
-        String wrongAnswer2 = Translator.abcToMorse(getRandomWord());
-        String wrongAnswer3 = Translator.abcToMorse(getRandomWord());
+        final String CORRECT_ANSWER = Translator.abcToMorse(WORD);
+        final String WRONG_ANSWER_1 = Translator.abcToMorse(getRandomWord());
+        final String WRONG_ANSWER_2 = Translator.abcToMorse(getRandomWord());
+        final String WRONG_ANSWER_3 = Translator.abcToMorse(getRandomWord());
 
-        return new String[]{word, correctAnswer,
-                wrongAnswer1, wrongAnswer2, wrongAnswer3};
+        return new String[]{WORD, CORRECT_ANSWER,
+                WRONG_ANSWER_1, WRONG_ANSWER_2, WRONG_ANSWER_3};
     }
 
     /**
@@ -78,10 +78,10 @@ public class MorseQuiz {
      */
     public static String[] defaultGameWord() throws IOException {
 
-        String word = getRandomWord();
-        String wordInMorse = Translator.abcToMorse(word);
+        final String WORD = getRandomWord();
+        final String WORD_IN_MORSE = Translator.abcToMorse(WORD);
 
-        return new String[]{word, wordInMorse};
+        return new String[]{WORD, WORD_IN_MORSE};
 
     }
 }
