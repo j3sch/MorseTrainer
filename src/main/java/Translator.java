@@ -127,20 +127,20 @@ public class Translator {
      * Pass dot or stroke by character to sound function
      *
      * @param input the word you want to convert to morse code sound
-     * @throws LineUnavailableException
+     * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
     public static void morseToSound(String input) throws LineUnavailableException {
-        char[] code = input.toCharArray();
+        final char[] code = input.toCharArray();
         for (char c : code) {
             generateSound(c);
         }
     }
 
     /**
-     * Expects an String array of several words or sentences to be translated to sound
+     * Expects an String array of several words or sentences to be translated from morsecode to sound
      *
      * @param input the word you want to convert to morse code sound
-     * @throws LineUnavailableException
+     * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
     public static void morseToSound(String[] input) throws LineUnavailableException {
         for (String c : input) {
@@ -148,11 +148,12 @@ public class Translator {
                 try {
                     Thread.sleep(800); // delay to split up chars
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             } else {
-                char[] morseChar = c.toCharArray();
-                for (int i = 0; i < morseChar.length;i++) {
-                    generateSound(morseChar[i]);
+                final char[] morseChar = c.toCharArray();
+                for (char morseCharacter : morseChar) {
+                    generateSound(morseCharacter);
                 }
             }
         }
@@ -162,21 +163,21 @@ public class Translator {
      * use the transfer parameter to generate a tone that is either long or short
      *
      * @param c '.' or '-', will be converted to sound
-     * @throws LineUnavailableException
+     * @throws LineUnavailableException if the line (sdl.open(af)) cannot be opened due to resource restrictions
      */
-    public static void generateSound(char c) throws LineUnavailableException {
+    private static void generateSound(char c) throws LineUnavailableException {
         int duration; // ms
-        int vol = 1;
-        float sampleRate = 8000f;
+        final int vol = 1;
+        final float sampleRate = 8000f;
         byte[] buf = new byte[1];
 
-        AudioFormat af = new AudioFormat(
+        final AudioFormat af = new AudioFormat(
                 sampleRate,         // sampling rate per sec
                 8,     // memory size for one sample value
                 1,          // mono
                 true,        // 8bit with sign (+/-)
                 false);
-        SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
+        final SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
 
         if (c == '-') {
             duration = 400;
