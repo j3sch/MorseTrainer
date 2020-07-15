@@ -14,7 +14,12 @@ public class Translator {
             "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----",
             "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", ".-.-.-", "--..--", "..--..", "-.-.--"};
 
-    /* -- single word to morsecode -- */
+    /**
+     * single word to morsecode
+     *
+     * @param word
+     * @return
+     */
     public static String abcToMorse(String word) {
 
         StringBuilder result = new StringBuilder();
@@ -31,8 +36,13 @@ public class Translator {
         return result.toString();
     }
 
-    /* -- sentences to morsecode -- */
-    public static String abcToMorse(char[] input) {
+    /**
+     * sentences to morsecode
+     *
+     * @param input
+     * @return
+     */
+    public static String abcToMorse(char[] input){
 
         StringBuilder result = new StringBuilder();
         int len = input.length;
@@ -47,7 +57,7 @@ public class Translator {
                         break;
                     }
                     if (j == letters.length - 1) {          //no match with current letter -> Error
-                        return "Error, input not valid!";
+                        result.append("?");
 
                     }
                 }
@@ -56,7 +66,12 @@ public class Translator {
         return result.toString();
     }
 
-    /* -- single morsecode word to word -- */
+    /**
+     * single morsecode word to word
+     *
+     * @param input
+     * @return
+     */
     public String morseToAbc(String input) {
 
         StringBuilder result = new StringBuilder();
@@ -70,7 +85,7 @@ public class Translator {
                     break;
                 }
                 if (j == morse.length -1) {                 //no match with current morsecode letter -> Error
-                    return "Error, input not valid!";
+                    result.append("?");
 
                 }
             }
@@ -78,7 +93,12 @@ public class Translator {
         return result.toString();
     }
 
-    /* -- morsecode sentences to sentences -- */
+    /**
+     * morsecode sentences to sentencces
+     *
+     * @param input
+     * @return
+     */
     public String morseToAbc(String[] input) {
 
         StringBuilder result = new StringBuilder();
@@ -94,7 +114,7 @@ public class Translator {
                         break;
                     }
                     if (j == morse.length -1) {             //no match with current morsecode letter -> Error
-                        return "Error, input not valid!";
+                        result.append("?");
                     }
                 }
             }
