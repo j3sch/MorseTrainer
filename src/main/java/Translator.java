@@ -45,7 +45,7 @@ public class Translator {
      * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
     public static void morseToSound(String input) throws LineUnavailableException {
-        char[] code = input.toCharArray();
+        final char[] code = input.toCharArray();
         for (char c : code) {
             generateSound(c);
         }
@@ -66,7 +66,7 @@ public class Translator {
                     e.printStackTrace();
                 }
             } else {
-                char[] morseChar = c.toCharArray();
+                final char[] morseChar = c.toCharArray();
                 for (char morseCharacter : morseChar) {
                     generateSound(morseCharacter);
                 }
@@ -82,17 +82,17 @@ public class Translator {
      */
     private static void generateSound(char c) throws LineUnavailableException {
         int duration; // ms
-        int vol = 1;
-        float sampleRate = 8000f;
+        final int vol = 1;
+        final float sampleRate = 8000f;
         byte[] buf = new byte[1];
 
-        AudioFormat af = new AudioFormat(
+        final AudioFormat af = new AudioFormat(
                 sampleRate,         // sampling rate per sec
                 8,     // memory size for one sample value
                 1,          // mono
                 true,        // 8bit with sign (+/-)
                 false);
-        SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
+        final SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
 
         if (c == '-') {
             duration = 400;
