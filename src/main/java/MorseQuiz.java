@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MorseQuiz {
 
@@ -11,27 +12,29 @@ public class MorseQuiz {
      * otherwise this method won't work as intended.
      *
      * @return one random word
-     * @throws IOException if final_list.txt could not be found
      */
-    public static String getRandomWord() throws IOException {
+    public static String getRandomWord() {
 
-        final FileReader file = new FileReader("./data/final_list.txt");
-        final BufferedReader br = new BufferedReader(file);
-        ArrayList<String> list = new ArrayList<>();
-        String line;
+        final ArrayList<String> list = new ArrayList<>();
+        final String filePath = "./data/final_list.txt";
 
-        while ((line = br.readLine()) != null) {
-            list.add(line);
+        try (final BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                list.add(line);
+            }
+
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
 
         //removes possible empty String
         list.removeIf(word -> word == null || "".equals(word));
 
         final Random rand = new Random();
-
         final int RANDOM_INDEX = rand.nextInt(list.size());
-
-        file.close();
         return list.get(RANDOM_INDEX);
     }
 
@@ -39,9 +42,8 @@ public class MorseQuiz {
      * A morse quiz which provides a word in morse and four possible Answers.
      *
      * @return a String[] which contains a morse code, the answer, and three wrong answers
-     * @throws IOException if final_list.txt could not be found
      */
-    public static String[] getMorseToWordQuiz() throws IOException {
+    public static String[] getMorseToWordQuiz() {
 
         final String CORRECT_ANSWER = getRandomWord();
 
@@ -55,9 +57,8 @@ public class MorseQuiz {
      * A morse quiz which provides morse and four possible Answers.
      *
      * @return a String[] which contains a word, the answer, and three wrong answers
-     * @throws IOException if final_list.txt could not be found
      */
-    public static String[] getWordToMorseQuiz() throws IOException {
+    public static String[] getWordToMorseQuiz() {
 
         final String WORD = getRandomWord();
 
@@ -74,16 +75,10 @@ public class MorseQuiz {
      * provides a default state
      *
      * @return a String[] which contains a random word and its translation
-     *
      */
-    public static String[] defaultGameWord(){
-        String WORD;
-        try {
-            WORD = getRandomWord();
-        }
-        catch (IOException e){
-            WORD = "test";
-        }
+    public static String[] defaultGameWord() {
+
+        final String WORD = getRandomWord();
         final String WORD_IN_MORSE = Translator.abcToMorse(WORD);
 
         return new String[]{WORD, WORD_IN_MORSE};
