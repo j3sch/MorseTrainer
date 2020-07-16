@@ -20,8 +20,8 @@ public class Translator {
      *
      * A single alphabetical word will translated into Morse code.
      *
-     * @param word
-     * @return
+     * @param word alphabetical word from the list
+     * @return translated word to Morse code
      */
     public static String abcToMorse(String word) {
 
@@ -42,10 +42,10 @@ public class Translator {
     /**
      * sentences to Morse code
      *
-     * An alphabetical sentence or sentences will translated into Morse code.
+     * An alphabetical sentence/s will translated into Morse code.
      *
-     * @param input
-     * @return
+     * @param input entered alphabetical sentence/s from the user
+     * @return translated sentence/s to Morse code
      */
     public static String abcToMorse(char[] input){
 
@@ -76,8 +76,8 @@ public class Translator {
      *
      * A single Morse code word will translated to alphabetical word.
      *
-     * @param input
-     * @return
+     * @param input entered Morse code word from the user
+     * @return translated sentence/s to alphabetical
      */
     public static String morseToAbc(String input) {
 
@@ -101,12 +101,12 @@ public class Translator {
     }
 
     /**
-     * Morse code  to sentences
+     * Morse code to sentences
      *
-     * A Morse code sentence or sentences will will translated to alphabetical sentence or sentences.
+     * A Morse code sentence/s will will translated to alphabetical sentence/s.
      *
-     * @param input
-     * @return
+     * @param input entered Morse code sentence/s from the user
+     * @return translated sentence/s to alphabetical
      */
     public static String morseToAbc(LinkedList<String> input) {
 
