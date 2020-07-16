@@ -74,11 +74,16 @@ public class MorseQuiz {
      * provides a default state
      *
      * @return a String[] which contains a random word and its translation
-     * @throws IOException if final_list.txt could not be found
+     *
      */
-    public static String[] defaultGameWord() throws IOException {
-
-        final String WORD = getRandomWord();
+    public static String[] defaultGameWord(){
+        String WORD;
+        try {
+            WORD = getRandomWord();
+        }
+        catch (IOException e){
+            WORD = "test";
+        }
         final String WORD_IN_MORSE = Translator.abcToMorse(WORD);
 
         return new String[]{WORD, WORD_IN_MORSE};

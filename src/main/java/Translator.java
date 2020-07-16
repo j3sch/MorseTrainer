@@ -143,7 +143,8 @@ public class Translator {
      * @param INPUT the word you want to convert to morse code sound
      * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
-    public static void morseToSound(final String[] INPUT) throws LineUnavailableException {
+    public static void morseToSound(final LinkedList<String> INPUT) throws LineUnavailableException {
+
         for (String c : INPUT) {
             if (c.equals(" ")) {
                 try {
