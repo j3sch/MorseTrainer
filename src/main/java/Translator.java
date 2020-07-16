@@ -33,7 +33,7 @@ public class Translator {
             for (int j = 0; j < LETTERS.length; j++) {      //goes through each element of the variable letters
                 if (lettersArray[i] == LETTERS[j]) {        //which position the letter has in the variable
                     result.append(MORSE[j]);                //copies same position from the morse variable to result
-                    if (i != len -1) {                      //inserts spaces between the letters, except if it is the last letter
+                    if (i != len -1) {                      //inserts spaces between the letters
                         result.append(" ");
                     }
                     break;
@@ -70,7 +70,7 @@ public class Translator {
                 for (int j = 0; j < LETTERS.length; j++) {  //goes through each element of the variable letters
                     if (input[i] == LETTERS[j]) {           //which position the letter has in the variable
                         result.append(MORSE[j]);            //copies the same position from the Morse variable to result
-                        if (i != len -1) {                  //adds spaces if it is not the last word
+                        if (i != len -1) {                  //inserts spaces between the Morse letters
                             result.append(" ");
                         }
                         break;
