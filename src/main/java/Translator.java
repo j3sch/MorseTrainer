@@ -32,7 +32,10 @@ public class Translator {
         for (int i = 0; i < len; i++) {                     //go through every letter of the word
             for (int j = 0; j < LETTERS.length; j++) {      //goes through each element of the variable letters
                 if (lettersArray[i] == LETTERS[j]) {        //which position the letter has in the variable
-                    result.append(MORSE[j]);                //copies same position from the morse variable to result
+                    result.append(MORSE[j]);             //copies same position from the morse variable to result
+                    if (i != len -1) {
+                        result.append(" ");
+                    }
                 }
             }
         }
@@ -59,6 +62,9 @@ public class Translator {
                 for (int j = 0; j < LETTERS.length; j++) {  //goes through each element of the variable letters
                     if (input[i] == LETTERS[j]) {           //which position the letter has in the variable
                         result.append(MORSE[j]);            //copies the same position from the morse variable to result
+                        if (i != len -1) {
+                            result.append(" ");
+                        }
                         break;
                     }
                     if (j == LETTERS.length - 1) {          //no match with current letter -> Error
