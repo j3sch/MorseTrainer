@@ -2,6 +2,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import java.util.LinkedList;
 
 public class Translator {
 
@@ -72,7 +73,7 @@ public class Translator {
      * @param input
      * @return
      */
-    public String morseToAbc(String input) {
+    public static String morseToAbc(String input) {
 
         StringBuilder result = new StringBuilder();
         String[] morseArray = input.split(" ");       //splits the single morsecode letters
@@ -99,17 +100,17 @@ public class Translator {
      * @param input
      * @return
      */
-    public String morseToAbc(String[] input) {
+    public static String morseToAbc(LinkedList<String> input) {
 
         StringBuilder result = new StringBuilder();
-        int len = input.length;
+        int len = input.size();
 
         for (int i = 0; i < len; i++) {                     //go through every morsecode letter of the sentence
-            if (input[i].equals(" ")) {                     //new word in the sentence -> add whitespace to result
+            if (input.get(i).equals(" ")) {                     //new word in the sentence -> add whitespace to result
                 result.append(" ");
             } else {
                 for (int j = 0; j < morse.length; j++) {    //goes through each element of the variable morse
-                    if (input[i].equals(morse[j])) {        //which position the morsecode letter has in the variable
+                    if (input.get(i).equals(morse[j])) {        //which position the morsecode letter has in the variable
                         result.append(letters[j]);          //copies the same position from the letters variable to result
                         break;
                     }
