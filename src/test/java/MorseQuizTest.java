@@ -14,18 +14,25 @@ public class MorseQuizTest {
     public void testFile() {
         Assert.assertTrue(Files.exists(Paths.get("./data/final_list.txt")));
         Assert.assertTrue(Files.isReadable(Paths.get("./data/final_list.txt")));
+
     }
 
     @Test
-    public void testIfWordsAreUnique() throws IOException {
+    public void testIfWordsAreUnique() {
 
-        FileReader file = new FileReader("./data/final_list.txt");
-        BufferedReader br = new BufferedReader(file);
         ArrayList<String> list = new ArrayList<>();
-        String line;
 
-        while ((line = br.readLine()) != null) {
-            list.add(line);
+        final String filePath = "./data/final_list.txt";
+
+        try (final BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                list.add(line);
+            }
+
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
 
         //removes possible empty String
@@ -41,5 +48,44 @@ public class MorseQuizTest {
         }
 
         Assert.assertTrue(isUnique);
+    }
+
+    @Test
+    public void getMorseToWordQuizTest() {
+
+        String[] a1 = MorseQuiz.getMorseToWordQuiz();
+
+        final String WORD_IN_MORSE = a1[0];
+        final String CORRECT_ANSWER = a1[1];
+
+        Assert.assertTrue(WORD_IN_MORSE.matches("[.-]+"));
+        Assert.assertFalse(CORRECT_ANSWER.matches("[.-]+"));
+        Assert.assertEquals(WORD_IN_MORSE, Translator.abcToMorse(CORRECT_ANSWER));
+    }
+
+    @Test
+    public void getWordToMorseQuiz() {
+
+        String[] a2 = MorseQuiz.getWordToMorseQuiz();
+
+        final String WORD =  a2[0];
+        final String CORRECT_ANSWER = a2[1];
+
+        Assert.assertFalse(WORD.matches("[.-]+"));
+        Assert.assertTrue(CORRECT_ANSWER.matches("[.-]+"));
+        Assert.assertEquals(CORRECT_ANSWER, Translator.abcToMorse(WORD));
+    }
+
+    @Test
+    public void defaultGameWordTest() {
+
+        String[] a3 = MorseQuiz.defaultGameWord();
+
+        final String WORD = a3[0];
+        final String WORD_IN_MORSE = a3[1];
+
+        Assert.assertFalse(WORD.matches("[.-]+"));
+        Assert.assertTrue(WORD_IN_MORSE.matches("[.-]+"));
+        Assert.assertEquals(WORD_IN_MORSE, Translator.abcToMorse(WORD));
     }
 }
