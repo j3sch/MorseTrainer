@@ -2,6 +2,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import java.util.LinkedList;
 
 public class Translator {
 
@@ -78,7 +79,7 @@ public class Translator {
      * @param input
      * @return
      */
-    public String morseToAbc(String input) {
+    public static String morseToAbc(String input) {
 
         StringBuilder result = new StringBuilder();
         String[] morseArray = input.split(" ");       //splits the single morsecode letters
@@ -107,17 +108,17 @@ public class Translator {
      * @param input
      * @return
      */
-    public String morseToAbc(String[] input) {
+    public static String morseToAbc(LinkedList<String> input) {
 
         StringBuilder result = new StringBuilder();
-        int len = input.length;
+        int len = input.size();
 
         for (int i = 0; i < len; i++) {                     //go through every morsecode letter of the sentence
-            if (input[i].equals(" ")) {                     //new word in the sentence -> add whitespace to result
+            if (input.get(i).equals(" ")) {                     //new word in the sentence -> add whitespace to result
                 result.append(" ");
             } else {
                 for (int j = 0; j < MORSE.length; j++) {    //goes through each element of the variable morse
-                    if (input[i].equals(MORSE[j])) {        //which position the morsecode letter has in the variable
+                    if (input.get(i).equals(MORSE[j])) {        //which position the morsecode letter has in the variable
                         result.append(LETTERS[j]);          //copies the same position from the letters variable to result
                         break;
                     }
@@ -134,12 +135,12 @@ public class Translator {
      * Expects single word as string to be translated to sound
      * Pass dot or stroke by character to sound function
      *
-     * @param input the word you want to convert to morse code sound
+     * @param INPUT the word you want to convert to morse code sound
      * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
-    public static void morseToSound(String input) throws LineUnavailableException {
-        final char[] code = input.toCharArray();
-        for (char c : code) {
+    public static void morseToSound(final String INPUT) throws LineUnavailableException {
+        final char[] CODE = INPUT.toCharArray();
+        for (char c : CODE) {
             generateSound(c);
         }
     }
@@ -147,11 +148,12 @@ public class Translator {
     /**
      * Expects an String array of several words or sentences to be translated from morsecode to sound
      *
-     * @param input the word you want to convert to morse code sound
+     * @param INPUT the word you want to convert to morse code sound
      * @throws LineUnavailableException if the line from generateSound (sdl.open(af)) cannot be opened due to resource restrictions
      */
-    public static void morseToSound(String[] input) throws LineUnavailableException {
-        for (String c : input) {
+    public static void morseToSound(final LinkedList<String> INPUT) throws LineUnavailableException {
+
+        for (String c : INPUT) {
             if (c.equals(" ")) {
                 try {
                     Thread.sleep(800); // delay to split up chars
@@ -159,8 +161,8 @@ public class Translator {
                     e.printStackTrace();
                 }
             } else {
-                final char[] morseChar = c.toCharArray();
-                for (char morseCharacter : morseChar) {
+                final char[] MORSECHAR = c.toCharArray();
+                for (char morseCharacter : MORSECHAR) {
                     generateSound(morseCharacter);
                 }
             }
@@ -170,24 +172,24 @@ public class Translator {
     /**
      * use the transfer parameter to generate a tone that is either long or short
      *
-     * @param c '.' or '-', will be converted to sound
+     * @param C '.' or '-', will be converted to sound
      * @throws LineUnavailableException if the line (sdl.open(af)) cannot be opened due to resource restrictions
      */
-    private static void generateSound(char c) throws LineUnavailableException {
+    private static void generateSound(final char C) throws LineUnavailableException {
         int duration; // ms
-        final int vol = 1;
-        final float sampleRate = 8000f;
+        final int VOL = 1;
+        final float SAMPLERATE = 8000f;
         byte[] buf = new byte[1];
 
         final AudioFormat af = new AudioFormat(
-                sampleRate,         // sampling rate per sec
+                SAMPLERATE,         // sampling rate per sec
                 8,     // memory size for one sample value
                 1,          // mono
                 true,        // 8bit with sign (+/-)
                 false);
         final SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
 
-        if (c == '-') {
+        if (C == '-') {
             duration = 400;
         } else {
             duration = 100;
@@ -198,8 +200,8 @@ public class Translator {
 
         // generate a sinus function
         for (int i = 0; i < duration * 8; i++) {
-            double angle = i / (sampleRate / 440) * 2.0 * Math.PI;
-            buf[0] = (byte) (Math.sin(angle) * 127.0 * vol); // current y-value of sinus
+            double angle = i / (SAMPLERATE / 440) * 2.0 * Math.PI;
+            buf[0] = (byte) (Math.sin(angle) * 127.0 * VOL); // current y-value of sinus
 
             // generate a sound from af that the user can hear
             sdl.write(buf, 0, 1);
