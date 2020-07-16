@@ -5,17 +5,19 @@ import javax.sound.sampled.SourceDataLine;
 
 public class Translator {
 
-    static final char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+    static final char[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
             'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1',
             '2', '3', '4', '5', '6', '7', '8', '9', '.', ',', '?', '!'};
 
-    static final String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+    static final String[] MORSE = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
             ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
             "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----",
             "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", ".-.-.-", "--..--", "..--..", "-.-.--"};
 
     /**
-     * single word to morsecode
+     * single word to Morse code
+     *
+     * A single alphabetical word will translated into Morse code.
      *
      * @param word
      * @return
@@ -27,9 +29,9 @@ public class Translator {
         char[] lettersArray = word.toCharArray();
 
         for (int i = 0; i < len; i++) {                     //go through every letter of the word
-            for (int j = 0; j < letters.length; j++) {      //goes through each element of the variable letters
-                if (lettersArray[i] == letters[j]) {        //which position the letter has in the variable
-                    result.append(morse[j]);                //copies same position from the morse variable to result
+            for (int j = 0; j < LETTERS.length; j++) {      //goes through each element of the variable letters
+                if (lettersArray[i] == LETTERS[j]) {        //which position the letter has in the variable
+                    result.append(MORSE[j]);                //copies same position from the morse variable to result
                 }
             }
         }
@@ -37,7 +39,9 @@ public class Translator {
     }
 
     /**
-     * sentences to morsecode
+     * sentences to Morse code
+     *
+     * An alphabetical sentence or sentences will translated into Morse code.
      *
      * @param input
      * @return
@@ -51,12 +55,12 @@ public class Translator {
             if (input[i] == ' ') {                          //new word in the sentence -> add whitespace to result
                 result.append(" ");
             } else {
-                for (int j = 0; j < letters.length; j++) {  //goes through each element of the variable letters
-                    if (input[i] == letters[j]) {           //which position the letter has in the variable
-                        result.append(morse[j]);            //copies the same position from the morse variable to result
+                for (int j = 0; j < LETTERS.length; j++) {  //goes through each element of the variable letters
+                    if (input[i] == LETTERS[j]) {           //which position the letter has in the variable
+                        result.append(MORSE[j]);            //copies the same position from the morse variable to result
                         break;
                     }
-                    if (j == letters.length - 1) {          //no match with current letter -> Error
+                    if (j == LETTERS.length - 1) {          //no match with current letter -> Error
                         result.append("?");
 
                     }
@@ -67,7 +71,9 @@ public class Translator {
     }
 
     /**
-     * single morsecode word to word
+     * single Morse code to word
+     *
+     * A single Morse code word will translated to alphabetical word.
      *
      * @param input
      * @return
@@ -79,12 +85,12 @@ public class Translator {
         int len = morseArray.length;
 
         for (int i = 0; i < len; i++) {                     //go through every morsecode letter of the word
-            for (int j = 0; j < morse.length; j++) {        //goes through each element of the variable morse
-                if (morseArray[i].equals(morse[j])) {       //which position the morsecode letter has in the variable
-                    result.append(letters[j]);              //copies the same position from the letters variable to result
+            for (int j = 0; j < MORSE.length; j++) {        //goes through each element of the variable morse
+                if (morseArray[i].equals(MORSE[j])) {       //which position the morsecode letter has in the variable
+                    result.append(LETTERS[j]);              //copies the same position from the letters variable to result
                     break;
                 }
-                if (j == morse.length -1) {                 //no match with current morsecode letter -> Error
+                if (j == MORSE.length -1) {                 //no match with current morsecode letter -> Error
                     result.append("?");
 
                 }
@@ -94,7 +100,9 @@ public class Translator {
     }
 
     /**
-     * morsecode sentences to sentencces
+     * Morse code  to sentences
+     *
+     * A Morse code sentence or sentences will will translated to alphabetical sentence or sentences.
      *
      * @param input
      * @return
@@ -108,12 +116,12 @@ public class Translator {
             if (input[i].equals(" ")) {                     //new word in the sentence -> add whitespace to result
                 result.append(" ");
             } else {
-                for (int j = 0; j < morse.length; j++) {    //goes through each element of the variable morse
-                    if (input[i].equals(morse[j])) {        //which position the morsecode letter has in the variable
-                        result.append(letters[j]);          //copies the same position from the letters variable to result
+                for (int j = 0; j < MORSE.length; j++) {    //goes through each element of the variable morse
+                    if (input[i].equals(MORSE[j])) {        //which position the morsecode letter has in the variable
+                        result.append(LETTERS[j]);          //copies the same position from the letters variable to result
                         break;
                     }
-                    if (j == morse.length -1) {             //no match with current morsecode letter -> Error
+                    if (j == MORSE.length -1) {             //no match with current morsecode letter -> Error
                         result.append("?");
                     }
                 }
