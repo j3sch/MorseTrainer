@@ -21,7 +21,7 @@ git clone git@gitlab.mi.hdm-stuttgart.de:morsen-in-mordor/morsetrainer.git
 
 all you need is a terminal
 
-```java
+```
 mvn clean javafx:run
 ```
 
@@ -29,6 +29,12 @@ mvn clean javafx:run
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Authors
+- Max Herkenhoff (GUI)
+- Firaz Ilhan (Game logic)
+- Jens Schlegel (Word translator)
+- Andrea Feurer (Sound translator)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
