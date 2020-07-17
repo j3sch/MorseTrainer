@@ -178,16 +178,10 @@ public class MainClass extends Application {
 
     public void choices_gamemode(Integer game_mode, Stage stage){
         String[] game_contents;
-        try {
-            if (game_mode == 0) {
-                game_contents = MorseQuiz.getWordToMorseQuiz();
-            }
-            else{
-                game_contents = MorseQuiz.getMorseToWordQuiz();
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-            return;
+        if (game_mode == 0) {
+            game_contents = MorseQuiz.getWordToMorseQuiz();
+        } else{
+            game_contents = MorseQuiz.getMorseToWordQuiz();
         }
         //init
         final HBox tmp = new HBox();
