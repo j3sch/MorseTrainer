@@ -53,15 +53,20 @@ public class TranslatorTest {
 
     @Test public void test_morseToAbc_sentence() {
         Assert.assertEquals("", Translator.morseToAbc(""));
+
         LinkedList<String> test = new LinkedList<String>(Arrays.asList("-", "....", "..", "...", " ", "..", "...", " ", ".-", " ", "-", ".", "...", "-", "-.-.--"));
         Assert.assertEquals("this is a test!", Translator.morseToAbc(test));
+
         LinkedList<String> fee = new LinkedList<String>(Arrays.asList("-", "....", ".", " ", "-", ".-.", ".-", "-.", "...", ".-..", ".-", "-", "..", "---", "-.", " ", "..-.", ".", ".", " ", "..", "...", " ", "...--", "-....",
                 ".....", "--..--", "----.", "---..", " ", ".", "..-", ".-.", "---", "..."));
         Assert.assertEquals("the translation fee is 365,98 euros", Translator.morseToAbc(fee));
-        LinkedList<String> unacceptableChar = new LinkedList<String>(Arrays.asList("..-", "-.", ".-", "-.-.", "-.-.", ".", ".--.", "-", ".-", "-...", ".-..", ".", " ", "-.-.", "....", ".-", ".-.", ".-", "-.-.", "-", ".", ".-.", "...", " ", ".-..", "..", "-.-", ".", " ", "%", ";", "#", "<", ">", "*", " ", ".--", "..", ".-..", ".-..", " ", "-...", ".", " ", "-..", "..", "...", ".--.", ".-..", ".-", "-.--", ".", "-..", " ",
-        ".-", "...", " ", "--.-", "..-", ".", "...", "-", "..", "---", "-.", " ", "--", ".-", ".-.", "-.-", "..."));
+
+        LinkedList<String> unacceptableChar = new LinkedList<String>(Arrays.asList("..-", "-.", ".-", "-.-.", "-.-.", ".", ".--.", "-", ".-", "-...", ".-..", ".", " ", "-.-.", "....", ".-", ".-.", ".-", "-.-.", "-", ".", ".-.", "...", " ", ".-..", "..", "-.-", ".", " ", "%",
+                ";", "#", "<", ">", "*", " ", ".--", "..", ".-..", ".-..", " ", "-...", ".", " ", "-..", "..", "...", ".--.", ".-..", ".-", "-.--", ".", "-..", " ", ".-", "...", " ", "--.-", "..-", ".", "...", "-", "..", "---", "-.", " ", "--", ".-", ".-.", "-.-", "..."));
         Assert.assertEquals("unacceptable characters like ?????? will be displayed as question marks", Translator.morseToAbc(unacceptableChar));
 
+        LinkedList<String> alphabetical = new LinkedList<String>(Arrays.asList("this", " ", "sentence", " ", "is", " ", "alphabetical"));
+        Assert.assertEquals("? ? ? ?", Translator.morseToAbc(alphabetical));
 
     }
     // End of Jens Test
