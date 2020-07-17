@@ -278,7 +278,7 @@ public class MainClass extends Application {
             //init
             final Button short_morse = new Button(".");
             final Button long_morse = new Button("-");
-            final Button finish_cha = new Button("next cha");
+            final Button finish_cha = new Button("next char");
             final Button add_space = new Button("*space*");
             final Button clear_all_input = new Button("clear");
             final Label display_user_input = new Label();
@@ -296,7 +296,7 @@ public class MainClass extends Application {
             });
             add_space.setOnAction(value -> {to_translate.add(" "); alter_label(" ",display_user_input);});
             finish_cha.setOnAction(value -> {
-                to_translate.add(StringUtils.difference(StringUtils.join(to_translate),display_user_input.getText()));
+                to_translate.add(StringUtils.difference(String.join("",to_translate),display_user_input.getText()));
             });
             short_morse.setOnAction(value -> { alter_label(".",display_user_input);
             });
@@ -312,7 +312,7 @@ public class MainClass extends Application {
                 start_sound_playback(to_translate);
             });
 
-            user_input.getChildren().addAll(short_morse,long_morse,finish_cha,add_space,play_sound);
+            user_input.getChildren().addAll(short_morse,long_morse,finish_cha,add_space,clear_all_input,play_sound);
             main_UI_grid.getChildren().add(display_user_input);
         }
         else{
