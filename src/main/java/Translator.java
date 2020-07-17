@@ -102,6 +102,10 @@ public class Translator {
         String[] morseArray = input.split(" ");       //splits the single Morse code letters
         int len = morseArray.length;
 
+        if (input.length() == 0) {
+            return input;
+        }
+
         for (int i = 0; i < len; i++) {                     //go through every Morse code letter of the word
             for (int j = 0; j < MORSE.length; j++) {        //goes through each element of the variable morse
                 if (morseArray[i].equals(MORSE[j])) {       //which position the Mose code letter has in the variable
@@ -129,6 +133,10 @@ public class Translator {
 
         StringBuilder result = new StringBuilder();
         int len = input.size();
+
+        if (input.size() == 0) {
+            return input.toString();
+        }
 
         for (int i = 0; i < len; i++) {                     //go through every Morse code letter of the sentence
             if (input.get(i).equals(" ")) {                     //new word in the sentence -> add whitespace to result
