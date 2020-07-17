@@ -343,7 +343,6 @@ public class MainClass extends Application {
                 translated_text.setText(Translator.abcToMorse(to_translate));
             });
             play_sound.setOnAction(e->{
-                System.out.println(translated_text.getText());
                 start_sound_playback(translated_text.getText());
             });
 
