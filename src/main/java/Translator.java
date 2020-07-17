@@ -167,7 +167,6 @@ public class Translator {
     public static void morseToSound(final String INPUT) throws LineUnavailableException {
         final char[] CODE = INPUT.toCharArray();
         for (char c : CODE) {
-            generateSound(c);
             if (c == ' ') {
                 try {
                     Thread.sleep(800); // delay to split up chars
