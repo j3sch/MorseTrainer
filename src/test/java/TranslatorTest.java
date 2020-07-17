@@ -1,5 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
+import sun.tools.jstat.Token;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 
@@ -38,7 +42,7 @@ public class TranslatorTest {
     }
 
     @Test public void test_morseToAbc_word() {
-        Assert.assertEquals("?", Translator.morseToAbc(""));
+        Assert.assertEquals("", Translator.morseToAbc(""));
         Assert.assertEquals("welcome", Translator.morseToAbc(".-- . .-.. -.-. --- -- ."));
         Assert.assertEquals("abcdefghijklmnopqrstuvwxyz", Translator.morseToAbc(".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --.."));
         Assert.assertEquals("0123456789", Translator.morseToAbc("----- .---- ..--- ...-- ....- ..... -.... --... ---.. ----."));
@@ -49,8 +53,11 @@ public class TranslatorTest {
     }
 
     @Test public void test_morseToAbc_sentence() {
-    Assert.assertEquals("?", Translator.morseToAbc(""));
-    Assert.assertEquals("welcome", Translator.morseToAbc(".-- . .-.. -.-. --- -- ."));
+        Assert.assertEquals("", Translator.morseToAbc(""));
+        Assert.assertEquals("welcome", Translator.morseToAbc(".-- . .-.. -.-. --- -- ."));
+        Assert.assertEquals("this is a test!", Translator.morseToAbc(ArrayList<String> eine = new ArrayList<String>("--..-- .-.-.- ..--.. -.-.--")));
+
+
     }
     // End of Jens Test
 
