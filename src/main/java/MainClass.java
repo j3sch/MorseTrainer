@@ -89,6 +89,16 @@ public class MainClass extends Application {
         launch();
     }
 
+    /**
+     * Overwrites the stop function for the JavaFX stage.
+     * Without this the sound playback would not stop when the UI is closed.
+     */
+
+    @Override
+    public void stop(){
+        System.exit(0);
+    }
+
 
     /**
      * Displays the game for the default/translate gamemode. Based on the game_mode the way the user can
@@ -333,6 +343,7 @@ public class MainClass extends Application {
                 translated_text.setText(Translator.abcToMorse(to_translate));
             });
             play_sound.setOnAction(e->{
+                System.out.println(translated_text.getText());
                 start_sound_playback(translated_text.getText());
             });
 
@@ -378,6 +389,7 @@ public class MainClass extends Application {
             }
         }).start();
     }
+
     /**
      * This starts the sound playback. Has to be in another Thread as otherwise the program would freeze until sound playback is finished.
      * Calls Translator.morseToSound
