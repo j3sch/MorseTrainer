@@ -10,33 +10,20 @@ import java.util.ArrayList;
 
 public class MorseQuizTest {
 
+    final static String FILE_PATH = "./data/final_list.txt";
+
     @Test
-    public void testFile() {
-        Assert.assertTrue(Files.exists(Paths.get("./data/final_list.txt")));
-        Assert.assertTrue(Files.isReadable(Paths.get("./data/final_list.txt")));
+    public final void testFile() {
+
+        Assert.assertTrue(Files.exists(Paths.get(FILE_PATH)));
+        Assert.assertTrue(Files.isReadable(Paths.get(FILE_PATH)));
 
     }
 
     @Test
-    public void testIfWordsAreUnique() {
+    public final void testIfWordsAreUnique() {
 
-        ArrayList<String> list = new ArrayList<>();
-
-        final String filePath = "./data/final_list.txt";
-
-        try (final BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                list.add(line);
-            }
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-
-        //removes possible empty String
-        list.removeIf(word -> word == null || "".equals(word));
+        ArrayList<String> list = loadWordsInFile();
 
         boolean isUnique = true;
 
@@ -51,41 +38,42 @@ public class MorseQuizTest {
     }
 
     @Test
-    public void getMorseToWordQuizTest() {
+    public final void testIfWordAreTranslatable() {
 
-        String[] a1 = MorseQuiz.getMorseToWordQuiz();
+        final ArrayList<String> list = loadWordsInFile();
 
-        final String WORD_IN_MORSE = a1[0];
-        final String CORRECT_ANSWER = a1[1];
+        boolean isTranslatable = true;
 
-        Assert.assertTrue(WORD_IN_MORSE.matches("[.-]+"));
-        Assert.assertFalse(CORRECT_ANSWER.matches("[.-]+"));
-        Assert.assertEquals(WORD_IN_MORSE, Translator.abcToMorse(CORRECT_ANSWER));
+        for (String s : list) {
+            String word = Translator.abcToMorse(s);
+
+            if (word.contains("?")) {
+                isTranslatable = false;
+                System.out.println("Word: " + '"' + s + '"' + " is not translatable");
+            }
+        }
+
+        Assert.assertTrue(isTranslatable);
     }
 
-    @Test
-    public void getWordToMorseQuiz() {
+    private ArrayList<String> loadWordsInFile() {
 
-        String[] a2 = MorseQuiz.getWordToMorseQuiz();
+        final ArrayList<String> list = new ArrayList<>();
 
-        final String WORD =  a2[0];
-        final String CORRECT_ANSWER = a2[1];
+        try (final BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
 
-        Assert.assertFalse(WORD.matches("[.-]+"));
-        Assert.assertTrue(CORRECT_ANSWER.matches("[.-]+"));
-        Assert.assertEquals(CORRECT_ANSWER, Translator.abcToMorse(WORD));
-    }
+            while ((line = br.readLine()) != null) {
+                list.add(line);
+            }
 
-    @Test
-    public void defaultGameWordTest() {
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
 
-        String[] a3 = MorseQuiz.defaultGameWord();
+        //removes possible empty String
+        list.removeIf(word -> word == null || "".equals(word));
 
-        final String WORD = a3[0];
-        final String WORD_IN_MORSE = a3[1];
-
-        Assert.assertFalse(WORD.matches("[.-]+"));
-        Assert.assertTrue(WORD_IN_MORSE.matches("[.-]+"));
-        Assert.assertEquals(WORD_IN_MORSE, Translator.abcToMorse(WORD));
+        return list;
     }
 }
