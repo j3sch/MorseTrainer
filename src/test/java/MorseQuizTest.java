@@ -41,7 +41,7 @@ public class MorseQuizTest {
     }
 
     @Test
-    public final void testIfWordAreTranslatable() {
+    public final void testIfWordsAreTranslatable() {
 
         final ArrayList<String> list = getWordsFromFile();
 
