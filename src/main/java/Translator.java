@@ -4,6 +4,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.LinkedList;
 
+/**
+ *  Translator translates words and whole sentences from abc to morse, morse to abc and morse to sound
+ *  @author Andrea Feurer, Jens Schlegel
+ */
 public class Translator {
 
     static final char[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
