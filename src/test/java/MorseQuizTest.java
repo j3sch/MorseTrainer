@@ -23,7 +23,7 @@ public class MorseQuizTest {
     @Test
     public final void testIfWordsAreUnique() {
 
-        ArrayList<String> list = loadWordsInFile();
+        ArrayList<String> list = getWordsFromFile();
 
         boolean isUnique = true;
 
@@ -40,7 +40,7 @@ public class MorseQuizTest {
     @Test
     public final void testIfWordAreTranslatable() {
 
-        final ArrayList<String> list = loadWordsInFile();
+        final ArrayList<String> list = getWordsFromFile();
 
         boolean isTranslatable = true;
 
@@ -56,7 +56,7 @@ public class MorseQuizTest {
         Assert.assertTrue(isTranslatable);
     }
 
-    private ArrayList<String> loadWordsInFile() {
+    private ArrayList<String> getWordsFromFile() {
 
         final ArrayList<String> list = new ArrayList<>();
 
