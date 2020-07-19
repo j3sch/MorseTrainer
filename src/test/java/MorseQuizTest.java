@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MorseQuizTest {
 
-    final static String FILE_PATH = "./data/final_list.txt";
+    final String FILE_PATH = "./data/final_list.txt";
 
     @Test
     public final void testFile() {
@@ -29,7 +29,7 @@ public class MorseQuizTest {
 
         for (int i = 0; i < list.size(); i++) {
             if (list.lastIndexOf(list.get(i)) != i) {
-                System.out.println("Delete one: " + '"' + list.get(i) + '"' + " in text file");
+                System.out.println("Delete one: " + '"' + list.get(i) + '"' + " in " + FILE_PATH);
                 isUnique = false;
             }
         }
@@ -49,7 +49,7 @@ public class MorseQuizTest {
 
             if (word.contains("?")) {
                 isTranslatable = false;
-                System.out.println("Word: " + '"' + s + '"' + " is not translatable");
+                System.out.println("Word: " + '"' + s + '"' + " in " + FILE_PATH + " is not translatable");
             }
         }
 
