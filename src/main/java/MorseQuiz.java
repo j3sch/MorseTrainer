@@ -16,9 +16,9 @@ public class MorseQuiz {
     public static String getRandomWord() {
 
         final ArrayList<String> list = new ArrayList<>();
-        final String filePath = "./data/final_list.txt";
+        final String FILE_PATH = "./data/final_list.txt";
 
-        try (final BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (final BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
 
             String line;
 
