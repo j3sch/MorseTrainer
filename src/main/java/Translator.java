@@ -27,7 +27,7 @@ public class Translator {
 
         StringBuilder result = new StringBuilder();
         int len = word.length();
-        char[] lettersArray = word.toCharArray();
+        char[] lettersArray = word.toLowerCase().toCharArray();
 
         for (int i = 0; i < len; i++) {                     //go through every letter of the word
             for (int j = 0; j < LETTERS.length; j++) {      //goes through each element of the variable letters
@@ -68,7 +68,7 @@ public class Translator {
                 result.append("/ ");
             } else {
                 for (int j = 0; j < LETTERS.length; j++) {  //goes through each element of the variable letters
-                    if (input[i] == LETTERS[j]) {           //which position the letter has in the variable
+                    if (Character.toLowerCase(input[i]) == LETTERS[j]) {           //which position the letter has in the variable
                         result.append(MORSE[j]);            //copies the same position from the Morse variable to result
                         if (i != len -1) {                  //inserts spaces between the Morse letters
                             result.append(" ");

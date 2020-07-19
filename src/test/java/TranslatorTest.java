@@ -1,9 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import sun.tools.jstat.Token;
+import java.util.Arrays;
+import java.util.LinkedList;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,12 +32,12 @@ public class TranslatorTest {
     }
 
     @Test public void test_abcToMorse_sentence() {
-        Assert.assertEquals("", Translator.abcToMorse("".toLowerCase().toCharArray()));
-        Assert.assertEquals("/ / / / / / / / / / ", Translator.abcToMorse("          ".toLowerCase().toCharArray()));
-        Assert.assertEquals("- .... .. ... / .. ... / .- / - . ... - -.-.--", Translator.abcToMorse("This is a test!".toLowerCase().toCharArray()));
-        Assert.assertEquals("- .... . / - .-. .- -. ... .-.. .- - .. --- -. / ..-. . . / .. ... / ...-- -.... ..... --..-- ----. ---.. / . ..- .-. --- ...", Translator.abcToMorse("The translation fee is 365,98 Euros".toLowerCase().toCharArray()));
+        Assert.assertEquals("", Translator.abcToMorse("".toCharArray()));
+        Assert.assertEquals("/ / / / / / / / / / ", Translator.abcToMorse("          ".toCharArray()));
+        Assert.assertEquals("- .... .. ... / .. ... / .- / - . ... - -.-.--", Translator.abcToMorse("This is a test!".toCharArray()));
+        Assert.assertEquals("- .... . / - .-. .- -. ... .-.. .- - .. --- -. / ..-. . . / .. ... / ...-- -.... ..... --..-- ----. ---.. / . ..- .-. --- ...", Translator.abcToMorse("The translation fee is 365,98 Euros".toCharArray()));
         Assert.assertEquals("..- -. .- -.-. -.-. . .--. - .- -... .-.. . / -.-. .... .- .-. .- -.-. - . .-. ... / .-.. .. -.- . / ? ? ? ? ? ? / .-- .. .-.. .-.. / -... . / -.. .. ... .--. .-.. .- -.-- . -.. /" +
-                " .- ... / --.- ..- . ... - .. --- -. " + "/ -- .- .-. -.- ...", Translator.abcToMorse("unacceptable characters like -;#<>* will be displayed as question marks".toLowerCase().toCharArray()));
+                " .- ... / --.- ..- . ... - .. --- -. " + "/ -- .- .-. -.- ...", Translator.abcToMorse("unacceptable characters like %;#<>* will be displayed as question marks".toCharArray()));
     }
 
     @Test public void test_morseToAbc_word() {
@@ -54,9 +53,20 @@ public class TranslatorTest {
 
     @Test public void test_morseToAbc_sentence() {
         Assert.assertEquals("", Translator.morseToAbc(""));
-        Assert.assertEquals("welcome", Translator.morseToAbc(".-- . .-.. -.-. --- -- ."));
-        Assert.assertEquals("this is a test!", Translator.morseToAbc(ArrayList<String> eine = new ArrayList<String>("--..-- .-.-.- ..--.. -.-.--")));
 
+        LinkedList<String> test = new LinkedList<String>(Arrays.asList("-", "....", "..", "...", " ", "..", "...", " ", ".-", " ", "-", ".", "...", "-", "-.-.--"));
+        Assert.assertEquals("this is a test!", Translator.morseToAbc(test));
+
+        LinkedList<String> fee = new LinkedList<String>(Arrays.asList("-", "....", ".", " ", "-", ".-.", ".-", "-.", "...", ".-..", ".-", "-", "..", "---", "-.", " ", "..-.", ".", ".", " ", "..", "...", " ", "...--", "-....",
+                ".....", "--..--", "----.", "---..", " ", ".", "..-", ".-.", "---", "..."));
+        Assert.assertEquals("the translation fee is 365,98 euros", Translator.morseToAbc(fee));
+
+        LinkedList<String> unacceptableChar = new LinkedList<String>(Arrays.asList("..-", "-.", ".-", "-.-.", "-.-.", ".", ".--.", "-", ".-", "-...", ".-..", ".", " ", "-.-.", "....", ".-", ".-.", ".-", "-.-.", "-", ".", ".-.", "...", " ", ".-..", "..", "-.-", ".", " ", "%",
+                ";", "#", "<", ">", "*", " ", ".--", "..", ".-..", ".-..", " ", "-...", ".", " ", "-..", "..", "...", ".--.", ".-..", ".-", "-.--", ".", "-..", " ", ".-", "...", " ", "--.-", "..-", ".", "...", "-", "..", "---", "-.", " ", "--", ".-", ".-.", "-.-", "..."));
+        Assert.assertEquals("unacceptable characters like ?????? will be displayed as question marks", Translator.morseToAbc(unacceptableChar));
+
+        LinkedList<String> alphabetical = new LinkedList<String>(Arrays.asList("this", " ", "sentence", " ", "is", " ", "alphabetical"));
+        Assert.assertEquals("? ? ? ?", Translator.morseToAbc(alphabetical));
 
     }
     // End of Jens Test
