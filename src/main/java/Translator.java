@@ -67,7 +67,7 @@ public class Translator {
         StringBuilder result = new StringBuilder();
         int len = input.length;
 
-        for (int i = 0; i < len; i++) {                     //go through every letter of the sentences
+        for (int i = 0; i < len; i++) {                                     //go through every letter of the sentences
             if (input[i] == ' ') {                                          //new word in the sentence -> add "/ "to result
                 result.append("/ ");
             } else {
