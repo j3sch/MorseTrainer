@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * MorseQuiz generates random words. Provides the words for the 4 word mode in abc and morse code.
+ * @author Firaz Ilhan
+ */
 public class MorseQuiz {
 
     /**
