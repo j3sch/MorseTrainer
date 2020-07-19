@@ -33,18 +33,18 @@ public class Translator {
         int len = word.length();
         char[] lettersArray = word.toLowerCase().toCharArray();
 
-        for (int i = 0; i < len; i++) {                     //go through every letter of the word
-            for (int j = 0; j < LETTERS.length; j++) {      //goes through each element of the variable letters
-                if (lettersArray[i] == LETTERS[j]) {        //which position the letter has in the variable
-                    result.append(MORSE[j]);                //copies same position from the morse variable to result
-                    if (i != len -1) {                      //inserts spaces between the letters
+        for (int i = 0; i < len; i++) {                             //go through every letter of the word
+            for (int j = 0; j < LETTERS.length; j++) {              //goes through each element of the variable letters
+                if (lettersArray[i] == LETTERS[j]) {                //which position the letter has in the variable
+                    result.append(MORSE[j]);                        //copies same position from the morse variable to result
+                    if (i != len -1) {                              //inserts spaces between the letters
                         result.append(" ");
                     }
                     break;
                 }
-                if (j == LETTERS.length - 1) {              //no match with current letter -> add to result "?"
+                if (j == LETTERS.length - 1) {                      //no match with current letter -> add to result "?"
                     result.append("?");
-                    if (i != len -1) {                      //inserts spaces between the Morse letters
+                    if (i != len -1) {                              //inserts spaces between the Morse letters
                         result.append(" ");
                     }
                     break;
@@ -68,20 +68,20 @@ public class Translator {
         int len = input.length;
 
         for (int i = 0; i < len; i++) {                     //go through every letter of the sentences
-            if (input[i] == ' ') {                          //new word in the sentence -> add "/ "to result
+            if (input[i] == ' ') {                                          //new word in the sentence -> add "/ "to result
                 result.append("/ ");
             } else {
-                for (int j = 0; j < LETTERS.length; j++) {  //goes through each element of the variable letters
-                    if (Character.toLowerCase(input[i]) == LETTERS[j]) {           //which position the letter has in the variable
-                        result.append(MORSE[j]);            //copies the same position from the Morse variable to result
-                        if (i != len -1) {                  //inserts spaces between the Morse letters
+                for (int j = 0; j < LETTERS.length; j++) {                  //goes through each element of the variable letters
+                    if (Character.toLowerCase(input[i]) == LETTERS[j]) {    //which position the letter has in the variable
+                        result.append(MORSE[j]);                            //copies the same position from the Morse variable to result
+                        if (i != len -1) {                                  //inserts spaces between the Morse letters
                             result.append(" ");
                         }
                         break;
                     }
-                    if (j == LETTERS.length - 1) {          //no match with current letter -> add to result "?"
+                    if (j == LETTERS.length - 1) {                          //no match with current letter -> add to result "?"
                         result.append("?");
-                        if (i != len -1) {                  //inserts spaces between the Morse letters
+                        if (i != len -1) {                                  //inserts spaces between the Morse letters
                             result.append(" ");
                         }
                         break;
@@ -106,7 +106,7 @@ public class Translator {
         String[] morseArray = input.split(" ");       //splits the single Morse code letters
         int len = morseArray.length;
 
-        if (input.length() == 0) {
+        if (input.length() == 0) {                          //input empty -> result empty
             return input;
         }
 
@@ -138,20 +138,20 @@ public class Translator {
         StringBuilder result = new StringBuilder();
         int len = input.size();
 
-        if (input.size() == 0) {
+        if (input.size() == 0) {                                //input empty -> result empty
             return input.toString();
         }
 
-        for (int i = 0; i < len; i++) {                     //go through every Morse code letter of the sentence
+        for (int i = 0; i < len; i++) {                         //go through every Morse code letter of the sentence
             if (input.get(i).equals(" ")) {                     //new word in the sentence -> add whitespace to result
                 result.append(" ");
             } else {
-                for (int j = 0; j < MORSE.length; j++) {    //goes through each element of the variable morse
+                for (int j = 0; j < MORSE.length; j++) {        //goes through each element of the variable morse
                     if (input.get(i).equals(MORSE[j])) {        //which position the Morse code letter has in the variable
-                        result.append(LETTERS[j]);          //copies the same position from the letters variable to result
+                        result.append(LETTERS[j]);              //copies the same position from the letters variable to result
                         break;
                     }
-                    if (j == MORSE.length -1) {             //no match with current Morse code letter -> add to result "?"
+                    if (j == MORSE.length -1) {                 //no match with current Morse code letter -> add to result "?"
                         result.append("?");
                         break;
                     }
