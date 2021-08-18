@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
 import java.util.LinkedList;
 import org.apache.commons.lang3.StringUtils;
 import javax.sound.sampled.LineUnavailableException;
@@ -19,10 +18,12 @@ import javax.sound.sampled.LineUnavailableException;
  * Main class. Handles the UI and communicates with the backend to get contents and translate Userinput
  * @author Max Herkenhoff
  */
-public class MainClass extends Application {
+public class Main extends Application {
     //not entirely sure why I have to declare the scene outside everything else...but if I don´t java complains
-    private final VBox main_UI_grid = new VBox();
-    private final Scene scene = new Scene(main_UI_grid, 640, 480);
+     final VBox main_UI_grid = new VBox();
+     final Scene scene = new Scene(main_UI_grid, 640, 480);
+
+
 
     /**
      * Essentially this is the main method as public void main just calls launch
@@ -47,16 +48,16 @@ public class MainClass extends Application {
         final Label trans_label = new Label("Translator");
         final Button M2L_Button = new Button("Morse -> letters");
         final Button L2M_Button = new Button("Letters -> Morse");
-        final Button Morse_4C_Button = new Button("Morse -> letters");
-        final Button Letters_4C_Button = new Button("Letters -> Morse");
+        final Button Letters_4C_Button = new Button("Letters->Morse");
+        final Button Morse_4C_Button = new Button("Morse->Letters");
         final Button Translator = new Button("Translator");
 
         //adding button functionality
-        Morse_4C_Button.setOnAction(e->{
+        Letters_4C_Button.setOnAction(e->{
             main_UI_grid.getChildren().clear();
             choices_gamemode(0, stage);
         });
-        Letters_4C_Button.setOnAction(e->{
+        Morse_4C_Button.setOnAction(e->{
             main_UI_grid.getChildren().clear();
             choices_gamemode(1, stage);
         });
@@ -128,9 +129,9 @@ public class MainClass extends Application {
         tmp.setAlignment(Pos.CENTER);
         HBox.setMargin(tmp,new Insets(20,20,20,20));
         tmp.setSpacing(10);
+        return_to_MM_button.defaultButtonProperty();
         tmp.getChildren().addAll(given_value,return_to_MM_button);
         return_to_MM_button.setOnAction(e->{return_to_Main_Menu(stage);});
-        //main_UI_grid.getChildren().add(given_value);
         main_UI_grid.getChildren().add(tmp);
 
         // Morse -> Alpha
@@ -139,7 +140,7 @@ public class MainClass extends Application {
             final Button user_done = new Button("Done");
             user_done.setOnAction(e->{
                     String alpha_from_user = alpha_input.getCharacters().toString();
-                    if (alpha_from_user.equals(data[0])){
+                    if (alpha_from_user.equals(data[0].replace(" ",""))){
                         main_UI_grid.getChildren().clear();
                         default_game_screen(game_mode,stage);
                     }else{
@@ -163,7 +164,7 @@ public class MainClass extends Application {
             short_morse.setOnAction(value -> { alter_label(".",display_user_input); });
             long_morse.setOnAction(value -> { alter_label("-",display_user_input); });
             done_button.setOnAction(e-> {
-                if(display_user_input.getText().equals(data[1])){
+                if(display_user_input.getText().equals(data[1].replace(" ",""))){
                     main_UI_grid.getChildren().clear();
                     default_game_screen(game_mode,stage);
                 } else {
@@ -198,7 +199,7 @@ public class MainClass extends Application {
         final Label given_word = new Label(game_contents[0]);
         final HBox button_row = new HBox();
         final Button return_to_MM_button = new Button("Main Menu");
-
+        return_to_MM_button.defaultButtonProperty();
         return_to_MM_button.setOnAction(e->{return_to_Main_Menu(stage);});
 
         //styling
@@ -277,6 +278,10 @@ public class MainClass extends Application {
         final HBox user_input = new HBox();
 
         //style and configuration
+        //Sidenote: While this is not really necessary we found that the default button highlighting tends to highlight one of the choices
+        //which was rather distracting. Due to JavaFX seemingly not supporting disabling the default button highlighting we decided to highlight
+        //the Main Menu button as this seemed less distracting.
+        return_to_MM_button.defaultButtonProperty();
         head_box.setAlignment(Pos.CENTER);
         return_to_MM_button.setOnAction(e->{return_to_Main_Menu(stage);});
         head_box.getChildren().addAll(head_label,switch_button,return_to_MM_button);
